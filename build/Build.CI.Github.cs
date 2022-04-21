@@ -17,9 +17,11 @@ using static Nuke.Common.IO.PathConstruction;
 [GitHubActions("release-main", GitHubActionsImage.UbuntuLatest,
     OnPushBranches = new[] { "master", "main" },
     InvokedTargets = new[] { nameof(Push), nameof(PublishGithubRelease) },
+    ImportSecrets = new[] { nameof(PersonalAccessToken) },
     PublishArtifacts = true)]
 public partial class Build
 {
+    [Parameter] [Secret] readonly string PersonalAccessToken;
     AbsolutePath PackagesDirectory => ArtifactsDirectory / "packages";
 
     Target Pack => _ => _
@@ -37,10 +39,11 @@ public partial class Build
     Target Push => _ => _
         .DependsOn(Pack)
         .OnlyWhenStatic(() => IsServerBuild)
+        .Requires(() => PersonalAccessToken)
         .Executes(() =>
         {
             Log.Information("Running push to packages directory.");
-            
+
             GlobFiles(PackagesDirectory, "*.nupkg")
                 .Where(x => !x.EndsWith("symbols.nupkg"))
                 .ForEach(x =>
@@ -48,14 +51,15 @@ public partial class Build
                     DotNetNuGetPush(s => s
                         .SetTargetPath(x)
                         .SetSource(GitRepository.HttpsUrl)
+                        .SetApiKey(PersonalAccessToken)
                     );
                 });
-
         });
 
     Target PublishGithubRelease => _ => _
         .DependsOn(Pack)
         .OnlyWhenDynamic(() => GitRepository.IsOnMainOrMasterBranch())
+        .Requires(() => PersonalAccessToken)
         .Executes<Task>(async () =>
         {
             Log.Information("Started creating release.");
@@ -66,7 +70,7 @@ public partial class Build
 
             var nugetPackages = PackagesDirectory.GlobFiles("*.nupkg")
                 .Select(x => x.ToString()).ToArray();
-            
+
             Assert.NotEmpty(nugetPackages);
 
             await PublishRelease(conf => conf
@@ -75,6 +79,7 @@ public partial class Build
                 .SetRepositoryName(repositoryName)
                 .SetRepositoryOwner(githubOwner)
                 .SetTag(releaseTag)
+                .SetToken(PersonalAccessToken)
                 .DisablePrerelease());
         });
 

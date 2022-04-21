@@ -37,6 +37,8 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj') }}
       - name: Run './build.cmd Push PublishGithubRelease'
         run: ./build.cmd Push PublishGithubRelease
+        env:
+          PersonalAccessToken: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       - uses: actions/upload-artifact@v1
         with:
           name: test-results
