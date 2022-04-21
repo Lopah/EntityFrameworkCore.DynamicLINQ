@@ -9,22 +9,23 @@
 #
 #     - To trigger manual generation invoke:
 #
-#         nuke --generate-configuration GitHubActions_pack --host GitHubActions
+#         nuke --generate-configuration GitHubActions_release-main --host GitHubActions
 #
 # </auto-generated>
 # ------------------------------------------------------------------------------
 
-name: pack
+name: release-main
 
 on:
   push:
     branches:
       - master
+      - main
 
 jobs:
-  ubuntu-20_04:
-    name: ubuntu-20_04
-    runs-on: ubuntu-20.04
+  ubuntu-latest:
+    name: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - name: Cache .nuke/temp, ~/.nuget/packages
@@ -34,8 +35,8 @@ jobs:
             .nuke/temp
             ~/.nuget/packages
           key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj') }}
-      - name: Run './build.cmd Pack'
-        run: ./build.cmd Pack
+      - name: Run './build.cmd PublishGithubRelease Push'
+        run: ./build.cmd PublishGithubRelease Push
       - uses: actions/upload-artifact@v1
         with:
           name: test-results

@@ -6,6 +6,9 @@
     "build": {
       "type": "object",
       "properties": {
+        "AutoStash": {
+          "type": "boolean"
+        },
         "Configuration": {
           "type": "string",
           "description": "Configuration to build - Default is 'Debug' (local) or 'Release' (server)",
@@ -74,6 +77,8 @@
               "Clean",
               "Compile",
               "Pack",
+              "PublishGithubRelease",
+              "Push",
               "Restore",
               "Test"
             ]
@@ -92,6 +97,8 @@
               "Clean",
               "Compile",
               "Pack",
+              "PublishGithubRelease",
+              "Push",
               "Restore",
               "Test"
             ]
