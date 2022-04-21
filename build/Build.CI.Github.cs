@@ -53,6 +53,7 @@ public partial class Build
                 {
                     DotNetNuGetPush(s => s
                         .SetTargetPath(x)
+                        .SetSource("https://nuget.pkg.github.com/lopah/index.json")
                         .SetApiKey(PersonalAccessToken)
                     );
                 });
