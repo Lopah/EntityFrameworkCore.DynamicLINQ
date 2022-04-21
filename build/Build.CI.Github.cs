@@ -31,7 +31,7 @@ public partial class Build
                 .Apply(PackSettings));
 
             ReportSummary(_ => _
-                .AddPair("Packages", PackagesDirectory.GlobFiles(".nupkg").Count.ToString()));
+                .AddPair("Packages", PackagesDirectory.GlobFiles("*.nupkg").Count.ToString()));
         });
 
     Target Push => _ => _
