@@ -35,8 +35,8 @@ jobs:
             .nuke/temp
             ~/.nuget/packages
           key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj') }}
-      - name: Run './build.cmd PublishGithubRelease Push'
-        run: ./build.cmd PublishGithubRelease Push
+      - name: Run './build.cmd Push PublishGithubRelease'
+        run: ./build.cmd Push PublishGithubRelease
       - uses: actions/upload-artifact@v1
         with:
           name: test-results

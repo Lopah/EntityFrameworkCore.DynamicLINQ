@@ -16,14 +16,10 @@ using static Nuke.Common.IO.PathConstruction;
 
 [GitHubActions("release-main", GitHubActionsImage.UbuntuLatest,
     OnPushBranches = new[] { "master", "main" },
-    InvokedTargets = new[] { nameof(PublishGithubRelease), nameof(Push) },
+    InvokedTargets = new[] { nameof(Push), nameof(PublishGithubRelease) },
     PublishArtifacts = true)]
 public partial class Build
 {
-    [Parameter]
-    readonly bool AutoStash = true;
-
-    string MajorMinorPatchVersion => GitVersion.MajorMinorPatch;
     AbsolutePath PackagesDirectory => ArtifactsDirectory / "packages";
 
     Target Pack => _ => _
@@ -70,6 +66,8 @@ public partial class Build
 
             var nugetPackages = ArtifactsDirectory.GlobFiles("*.nupkg")
                 .Select(x => x.ToString()).ToArray();
+            
+            Assert.NotEmpty(nugetPackages);
 
             await PublishRelease(conf => conf
                 .SetArtifactPaths(nugetPackages)
