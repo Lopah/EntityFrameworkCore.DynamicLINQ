@@ -43,6 +43,9 @@ public partial class Build
         .Executes(() =>
         {
             Log.Information("Running push to packages directory.");
+            
+            
+            Assert.True(!string.IsNullOrEmpty(PersonalAccessToken));
 
             GlobFiles(PackagesDirectory, "*.nupkg")
                 .Where(x => !x.EndsWith("symbols.nupkg"))
