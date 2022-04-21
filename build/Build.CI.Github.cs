@@ -41,7 +41,7 @@ public partial class Build
         {
             Log.Information("Running push to packages directory.");
             
-            GlobFiles(ArtifactsDirectory, "*.nupkg")
+            GlobFiles(PackagesDirectory, "*.nupkg")
                 .Where(x => !x.EndsWith("symbols.nupkg"))
                 .ForEach(x =>
                 {
@@ -64,7 +64,7 @@ public partial class Build
             var githubOwner = GitRepository.GetGitHubOwner();
             var repositoryName = GitRepository.GetGitHubName();
 
-            var nugetPackages = ArtifactsDirectory.GlobFiles("*.nupkg")
+            var nugetPackages = PackagesDirectory.GlobFiles("*.nupkg")
                 .Select(x => x.ToString()).ToArray();
             
             Assert.NotEmpty(nugetPackages);
@@ -81,7 +81,7 @@ public partial class Build
 
     private Configure<DotNetPackSettings> PackSettings => _ => _
         .SetProject(Solution)
-        .SetConfiguration(Configuration.Release)
+        .SetConfiguration(Configuration)
         .SetNoBuild(SucceededTargets.Contains(Compile))
         .SetOutputDirectory(PackagesDirectory)
         .When(GitRepository.HttpsUrl != null, (_) => _.SetRepositoryUrl(GitRepository.HttpsUrl));
