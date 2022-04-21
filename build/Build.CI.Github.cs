@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Nuke.Common;
 using Nuke.Common.CI.GitHubActions;
@@ -62,11 +63,12 @@ public partial class Build
     Target PublishGithubRelease => _ => _
         .DependsOn(Pack)
         .OnlyWhenDynamic(() => GitRepository.IsOnMainOrMasterBranch())
-        .Requires(() => PersonalAccessToken)
+        // .Requires(() => PersonalAccessToken)
         .Executes<Task>(async () =>
         {
             Log.Information("Started creating release.");
-            var releaseTag = $"v{GitVersion.AssemblySemFileVer}";
+            var releaseTag = $"v{GitVersion.Major}.{GitVersion.Minor}.{GitVersion.Patch}";
+
 
             var githubOwner = GitRepository.GetGitHubOwner();
             var repositoryName = GitRepository.GetGitHubName();
