@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>EF.EntityFrameworkCore.DynamicWhere</RootNamespace>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>Lopah Library EntityFrameworkCore</Title>
+        <Authors>Lopah (Daniel Jašek)</Authors>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>Lopah, Library, EntityFrameworkCore</PackageTags>
+        <PackageReleaseNotes>Created extensions methods for hooking up to EntityFrameworkCore</PackageReleaseNotes>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="BenchmarkDotNet" Version="0.13.1" />
+        <PackageReference Include="JetBrains.Annotations" Version="2021.3.0" />
+    </ItemGroup>
+
+</Project>
