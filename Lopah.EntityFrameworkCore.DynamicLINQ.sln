@@ -8,7 +8,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkCore.Perform
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkCore.Tests", "tests\EntityFrameworkCore.Tests.csproj", "{4840F45C-D924-4D2B-914E-E55284781AE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkCore", "src\Core\EntityFrameworkCore.csproj", "{5C4FAC5A-7A16-424D-88CD-E955EF829553}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EF.EntityFrameworkCore.DynamicWhere", "src\Core\EF.EntityFrameworkCore.DynamicWhere.csproj", "{5C4FAC5A-7A16-424D-88CD-E955EF829553}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{536B158F-BB07-48C1-B465-D99BDE96D0D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +22,8 @@ Global
 		{4840F45C-D924-4D2B-914E-E55284781AE7} = {A6D82E63-3D66-41B2-BA41-89CD6008DEFB}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{536B158F-BB07-48C1-B465-D99BDE96D0D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{536B158F-BB07-48C1-B465-D99BDE96D0D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D3EA00D-B7EF-467C-8F72-FDEB8D04F9AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7D3EA00D-B7EF-467C-8F72-FDEB8D04F9AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D3EA00D-B7EF-467C-8F72-FDEB8D04F9AB}.Release|Any CPU.ActiveCfg = Release|Any CPU

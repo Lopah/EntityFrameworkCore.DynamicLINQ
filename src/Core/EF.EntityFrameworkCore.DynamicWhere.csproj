@@ -11,6 +11,13 @@
         <RepositoryType>git</RepositoryType>
         <PackageTags>Lopah, Library, EntityFrameworkCore</PackageTags>
         <PackageReleaseNotes>Created extensions methods for hooking up to EntityFrameworkCore</PackageReleaseNotes>
+        <Description>Simple library to extend Linq with convenient functionality.</Description>
+        <Copyright>© 2021 Lopah (Daniel Jašek)</Copyright>
+        <PackageProjectUrl>https://github.com/Lopah/EntityFrameworkCore.DynamicLINQ</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/Lopah/EntityFrameworkCore.DynamicLINQ</RepositoryUrl>
+        <AssemblyVersion>1.0.0</AssemblyVersion>
+        <FileVersion>1.0.0</FileVersion>
+        <Product>EF.EntityFrameworkCore.DynamicWhere</Product>
     </PropertyGroup>
 
     <ItemGroup>

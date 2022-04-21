@@ -22,7 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\src\Core\EntityFrameworkCore.csproj" />
+        <ProjectReference Include="..\src\Core\EF.EntityFrameworkCore.DynamicWhere.csproj" />
     </ItemGroup>
 
 </Project>
