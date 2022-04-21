@@ -53,7 +53,6 @@ public partial class Build
                 {
                     DotNetNuGetPush(s => s
                         .SetTargetPath(x)
-                        .SetSource(GitRepository.HttpsUrl)
                         .SetApiKey(PersonalAccessToken)
                     );
                 });
@@ -66,7 +65,7 @@ public partial class Build
         .Executes<Task>(async () =>
         {
             Log.Information("Started creating release.");
-            var releaseTag = $"v{GitVersion.MajorMinorPatch}";
+            var releaseTag = $"v{GitVersion.AssemblySemFileVer}";
 
             var githubOwner = GitRepository.GetGitHubOwner();
             var repositoryName = GitRepository.GetGitHubName();

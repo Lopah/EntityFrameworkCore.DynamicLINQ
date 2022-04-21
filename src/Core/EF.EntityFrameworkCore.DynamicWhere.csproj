@@ -8,6 +8,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>Lopah Library EntityFrameworkCore</Title>
         <Authors>Lopah (Daniel Jašek)</Authors>
+        <RepositoryUrl>https://github.com/Lopah/EntityFrameworkCore.DynamicLINQ/</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>Lopah, Library, EntityFrameworkCore</PackageTags>
         <PackageReleaseNotes>Created extensions methods for hooking up to EntityFrameworkCore</PackageReleaseNotes>
